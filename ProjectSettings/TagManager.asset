@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - DeadPlayer
   - DeadEnemy
+  - Combat
   layers:
   - Default
   - TransparentFX
