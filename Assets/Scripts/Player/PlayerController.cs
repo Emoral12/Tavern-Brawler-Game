@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] float jumpForce = 3;
 
-    private bool bartkeepingState = true;
+    // private bool bartkeepingState = true; optimize later for in-game no cursor until dialogue initiated
     private bool combatState = false;
 
     void Start()
@@ -53,11 +53,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce);
         }
 
-        if (bartkeepingState == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        
 
         if (combatState == true) 
         {
