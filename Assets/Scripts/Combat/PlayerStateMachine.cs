@@ -141,6 +141,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void TakeDamage(float getDamageAmount)
     {
         player.curHP -= getDamageAmount;
+        stats.PlayerHP.text = "HP: " + player.curHP + "/" + player.baseHP;
         if (player.curHP <= 0f)
         {
             currentState = TurnState.DEAD;
