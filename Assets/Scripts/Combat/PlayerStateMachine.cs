@@ -35,8 +35,14 @@ public class PlayerStateMachine : MonoBehaviour
     private Transform PlayerPanelSpacer;
     void Start()
     {
+        //PlayerPanelSpacer = GameObject.Find("BattleUI").transform.FindChild("PlayerPanel").FindChild("PlayerPanelSpace");
+        //CreatePlayerPanel();
         startPos = transform.position;
         curCooldown = Random.Range(0, 2.5f);
+        stats = PlayerPanel.GetComponent<PlayerPanelStats>();
+        stats.PlayerName.text = player.name;
+        stats.PlayerHP.text = "HP: " + player.curHP + "/" + player.baseHP;
+        stats.PlayerMP.text = "MP: " + player.curMP + "/" + player.baseMP;
         currentState = TurnState.PROCESSING;
         bsm = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
     }
@@ -145,6 +151,13 @@ public class PlayerStateMachine : MonoBehaviour
         float calcDamage = 15;
         EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calcDamage);
         Debug.Log("Player attacks and deals " + calcDamage + " damage!");
+    }
+
+    void CreatePlayerPanel()
+    {
+        PlayerPanel = Instantiate(PlayerPanel) as GameObject;
+        
+        //PlayerPanel.transform.SetParent(PlayerPanelSpacer,false);
     }
 
 }
