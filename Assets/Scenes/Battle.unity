@@ -683,8 +683,9 @@ MonoBehaviour:
     - {fileID: 83729548728001509, guid: 596cb77614e92564e8406c65ba9415fe, type: 3}
   currentState: 0
   ProgressBar: {fileID: 1950762918}
+  isDefending: 0
   EnemyToAttack: {fileID: 0}
-  PlayerPanel: {fileID: 0}
+  PlayerPanel: {fileID: 1475232688}
 --- !u!136 &203810811
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1785,6 +1786,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381156446}
   m_CullTransparentMesh: 1
+--- !u!1 &1475232688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4423860913952917100, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
+  m_PrefabInstance: {fileID: 8662620891965519945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1683192726
 GameObject:
   m_ObjectHideFlags: 0

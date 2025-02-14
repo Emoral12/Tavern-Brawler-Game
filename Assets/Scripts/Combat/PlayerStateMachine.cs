@@ -8,6 +8,7 @@ public class PlayerStateMachine : MonoBehaviour
     public BasePlayer player;
     private BattleStateMachine bsm;
 
+
     public enum TurnState
     {
         PROCESSING,
@@ -23,10 +24,12 @@ public class PlayerStateMachine : MonoBehaviour
     private float curCooldown = 0f;
     private float maxCooldown = 5f;
     public Image ProgressBar;
+    public bool isDefending = false;
     public GameObject EnemyToAttack;
     private bool actionStarted = false;
     private Vector3 startPos;
     private float animSpeed = 5f;
+
 
     private bool alive = true;
 
@@ -108,14 +111,28 @@ public class PlayerStateMachine : MonoBehaviour
         }
         actionStarted = true;
 
-        Vector3 enemyPos = new Vector3(EnemyToAttack.transform.position.x, transform.position.y, EnemyToAttack.transform.position.z + 1.5f);
-        while (MoveTowardsEnemy(enemyPos))
+        if (isDefending)
         {
-            yield return null;
+            Vector3 playerPos = new Vector3(EnemyToAttack.transform.position.x, transform.position.y, EnemyToAttack.transform.position.z);
+        }
+        else
+        {
+            Vector3 enemyPos = new Vector3(EnemyToAttack.transform.position.x, transform.position.y, EnemyToAttack.transform.position.z + 1.5f);
+
+            while (MoveTowardsEnemy(enemyPos))
+            {
+                yield return null;
+            }
         }
 
+
+
         yield return new WaitForSeconds(0.5f);
-        DoDamage();
+        if (isDefending == false)
+        {
+            DoDamage();
+        }
+
 
         Vector3 firstPosition = startPos;
         while (MoveTowardsStart(firstPosition))
@@ -125,6 +142,7 @@ public class PlayerStateMachine : MonoBehaviour
         bsm.performList.RemoveAt(0);
         bsm.action = BattleStateMachine.PerformAction.WAIT;
         actionStarted = false;
+
         curCooldown = 0f;
         currentState = TurnState.PROCESSING;
 
@@ -140,6 +158,10 @@ public class PlayerStateMachine : MonoBehaviour
     }
     public void TakeDamage(float getDamageAmount)
     {
+        if (isDefending)
+        {
+            getDamageAmount = getDamageAmount / 2;
+        }
         player.curHP -= getDamageAmount;
         stats.PlayerHP.text = "HP: " + player.curHP + "/" + player.baseHP;
         if (player.curHP <= 0f)
@@ -157,7 +179,7 @@ public class PlayerStateMachine : MonoBehaviour
     void CreatePlayerPanel()
     {
         PlayerPanel = Instantiate(PlayerPanel) as GameObject;
-        
+
         //PlayerPanel.transform.SetParent(PlayerPanelSpacer,false);
     }
 
