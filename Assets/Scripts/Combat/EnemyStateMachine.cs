@@ -6,6 +6,8 @@ public class EnemyStateMachine : MonoBehaviour
 {
     public BaseEnemy enemy;
     private BattleStateMachine bsm;
+    
+    private bool alive = true;
 
     public enum TurnState
     {
@@ -58,6 +60,25 @@ public class EnemyStateMachine : MonoBehaviour
                 StartCoroutine(TimeForAction());
                 break;
             case (TurnState.DEAD):
+                if (!alive)
+                {
+                    return;
+                }
+                else
+                {
+                    this.gameObject.tag = "DeadPlayer";
+                    bsm.EnemiesInBattle.Remove(this.gameObject);
+                    for (int i = 0; i < bsm.performList.Count; i++)
+                    {
+                        if (bsm.performList[i].AttackersGameObject == this.gameObject)
+                        {
+                            bsm.performList.RemoveAt(i);
+                        }
+                    }
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+
+                    alive = false;
+                }
                 break;
         }
 

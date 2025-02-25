@@ -297,7 +297,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 58273867}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1683192729}
+        m_TargetAssemblyTypeName: BattleStateMachine, Assembly-CSharp
+        m_MethodName: Input3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &58273867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,8 +695,9 @@ MonoBehaviour:
     - {fileID: 83729548728001509, guid: 596cb77614e92564e8406c65ba9415fe, type: 3}
   currentState: 0
   ProgressBar: {fileID: 1950762918}
+  isDefending: 0
   EnemyToAttack: {fileID: 0}
-  PlayerPanel: {fileID: 0}
+  PlayerPanel: {fileID: 2000231021}
 --- !u!136 &203810811
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2028,6 +2041,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4749592133806748069, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
   m_PrefabInstance: {fileID: 8662620891965519945}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2000231021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4423860913952917100, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
+  m_PrefabInstance: {fileID: 8662620891965519945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2134922866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,17 +2187,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1381156447}
     m_Modifications:
-    - target: {fileID: 1214073093862063467, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
-      propertyPath: m_text
-      value: 'MP: 15/15'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343417933415938971, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
-      propertyPath: m_text
-      value: 'HP: 200/200'
-      objectReference: {fileID: 0}
     - target: {fileID: 4423860913952917100, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
       propertyPath: m_Name
       value: PlayerBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423860913952917100, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4749592133806748069, guid: c3529fa2f562d7341b3c248c43326023, type: 3}
       propertyPath: m_Pivot.x
