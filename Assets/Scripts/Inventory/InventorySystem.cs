@@ -19,6 +19,16 @@ public class InventorySystem : MonoBehaviour
     [Header("Testing")]
     [SerializeField] private Item[] testItems;
 
+    [SerializeField] private int inventorySize = 10;
+    [SerializeField] private List<Item> items = new List<Item>();
+    [SerializeField] private Transform inventoryUIParent;
+    [SerializeField] private GameObject inventorySlotPrefab;
+    
+    [Header("Selection")]
+    [SerializeField] private int selectedSlot = 0;
+    [SerializeField] private Color normalSlotColor = Color.white;
+    [SerializeField] private Color selectedSlotColor = Color.yellow;
+    
     private Item[] inventoryItems;
     private List<InventorySlot> slots = new List<InventorySlot>();
     private bool isInventoryOpen = false;
@@ -27,6 +37,7 @@ public class InventorySystem : MonoBehaviour
     private bool wasMouseVisible;
     private bool wasMouseLocked;
     private PlayerController playerController;
+    private List<GameObject> uiSlots = new List<GameObject>();
 
     private void Start()
     {
@@ -37,6 +48,18 @@ public class InventorySystem : MonoBehaviour
         draggedItemImage.gameObject.SetActive(false);
         draggedItemImage.rectTransform.position = new Vector3(-1000, -1000, 0);
         playerController = FindObjectOfType<PlayerController>();
+        
+        for (int i = items.Count; i < inventorySize; i++)
+        {
+            items.Add(null);
+        }
+        
+        if (inventoryUIParent != null && inventorySlotPrefab != null)
+        {
+            CreateInventoryUI();
+        }
+        
+        SelectSlot(0);
     }
 
     private void Update()
@@ -54,6 +77,23 @@ public class InventorySystem : MonoBehaviour
         if (isInventoryOpen)
         {
             UpdateDraggedItem();
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            KeyCode keyCode = (i < 9) ? KeyCode.Alpha1 + i : KeyCode.Alpha0;
+            
+            if (Input.GetKeyDown(keyCode))
+            {
+                SelectSlot(i);
+                Debug.Log($"Selected inventory slot {i}");
+                break;
+            }
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F) && selectedSlot >= 0 && selectedSlot < items.Count)
+        {
+            UseSelectedItem();
         }
     }
 
@@ -183,5 +223,106 @@ public class InventorySystem : MonoBehaviour
             return inventoryItems[index];
         }
         return null;
+    }
+
+    private void CreateInventoryUI()
+    {
+        
+        foreach (var slot in uiSlots)
+        {
+            Destroy(slot);
+        }
+        uiSlots.Clear();
+        
+        
+        for (int i = 0; i < inventorySize; i++)
+        {
+            GameObject slotObj = Instantiate(inventorySlotPrefab, inventoryUIParent);
+            uiSlots.Add(slotObj);
+            
+            
+            Transform slotNumberTransform = slotObj.transform.Find("SlotNumber");
+            if (slotNumberTransform != null)
+            {
+                TMPro.TextMeshProUGUI slotNumber = slotNumberTransform.GetComponent<TMPro.TextMeshProUGUI>();
+                if (slotNumber != null)
+                {
+                    slotNumber.text = (i + 1).ToString();
+                }
+            }
+            
+            
+            UpdateSlotUI(i);
+        }
+    }
+    
+    private void UpdateSlotUI(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= uiSlots.Count) return;
+        
+        GameObject slotObj = uiSlots[slotIndex];
+        Item item = (slotIndex < items.Count) ? items[slotIndex] : null;
+        
+        
+        Transform iconTransform = slotObj.transform.Find("Icon");
+        if (iconTransform != null)
+        {
+            Image iconImage = iconTransform.GetComponent<Image>();
+            if (iconImage != null)
+            {
+                if (item != null)
+                {
+                    iconImage.sprite = item.icon;
+                    iconImage.enabled = true;
+                }
+                else
+                {
+                    iconImage.sprite = null;
+                    iconImage.enabled = false;
+                }
+            }
+        }
+    }
+    
+    public void SelectSlot(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= inventorySize) return;
+        
+        
+        if (selectedSlot >= 0 && selectedSlot < uiSlots.Count)
+        {
+            Image slotImage = uiSlots[selectedSlot].GetComponent<Image>();
+            if (slotImage != null)
+            {
+                slotImage.color = normalSlotColor;
+            }
+        }
+        
+        
+        selectedSlot = slotIndex;
+        if (selectedSlot >= 0 && selectedSlot < uiSlots.Count)
+        {
+            Image slotImage = uiSlots[selectedSlot].GetComponent<Image>();
+            if (slotImage != null)
+            {
+                slotImage.color = selectedSlotColor;
+            }
+        }
+    }
+    
+    private void UseSelectedItem()
+    {
+        if (selectedSlot >= 0 && selectedSlot < items.Count)
+        {
+            Item item = items[selectedSlot];
+            if (item != null && item.isUsable)
+            {
+                item.Use();
+                
+                
+                items[selectedSlot] = null;
+                UpdateSlotUI(selectedSlot);
+            }
+        }
     }
 }
