@@ -33,12 +33,16 @@ public class BattleStateMachine : MonoBehaviour
     private HandleTurn PlayerChoice;
 
     public GameObject enemyButton;
+    public GameObject actionButton;
+    public GameObject magicButton;
     public Transform Spacer;
+    private List<GameObject> atkBtns = new List<GameObject>();
 
     public GameObject AttackPanel;
+    public GameObject MagicPanel;
     public GameObject EnemySelectPanel;
 
-    private bool Defend = false;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +54,9 @@ public class BattleStateMachine : MonoBehaviour
 
         AttackPanel.SetActive(false);
         EnemySelectPanel.SetActive(false);
+        MagicPanel.SetActive(false);
         EnemyButtons();
+        CreateAttackButtons();
     }
 
     // Update is called once per frame
@@ -147,6 +153,34 @@ public class BattleStateMachine : MonoBehaviour
         }
     }
 
+
+
+    void CreateAttackButtons()
+    {
+        GameObject AttackButton = Instantiate(actionButton) as GameObject;
+        TMP_Text AttackButtonText = AttackButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+        AttackButtonText.text = "Attack";
+        AttackButton.GetComponent<Button>().onClick.AddListener(() => Input1());
+        atkBtns.Add(AttackButton);
+
+        GameObject MagicAttackButton = Instantiate(actionButton) as GameObject;
+        TMP_Text MagicAttackButtonText = MagicAttackButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+        MagicAttackButtonText.text = "Magic";
+        MagicAttackButton.GetComponent<Button>().onClick.AddListener(() => Input4());
+        atkBtns.Add(MagicAttackButton);
+        foreach (BaseAttack magicAtk in PlayerToManage[0].GetComponent<PlayerStateMachine>().player.magic)
+        {
+            GameObject MagicButton = Instantiate(magicButton) as GameObject;
+            TMP_Text MagicButtonText = MagicButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+            MagicButtonText.text = magicAtk.name;
+            AttackButton ATB = MagicButton.GetComponent<AttackButton>();
+            ATB.magicAttackToPerform = magicAtk;
+            atkBtns.Add(MagicButton);
+
+        }
+
+    }
+
     public void Input1()//attack button
     {
         PlayerChoice.Attacker = PlayerToManage[0].name;
@@ -163,17 +197,21 @@ public class BattleStateMachine : MonoBehaviour
         PlayerInput = PlayerGUI.DONE;
     }
 
-    public void Input3()//defend button
+    public void Input3(BaseAttack chosenMagic)//magic button
     {
         PlayerChoice.Attacker = PlayerToManage[0].name;
         PlayerChoice.AttackersGameObject = PlayerToManage[0];
         PlayerChoice.Type = "Player";
-        Defend = true;
-        PlayerChoice.AttackersTarget = PlayerToManage[0];
 
+        PlayerChoice.chosenAttack = chosenMagic;
+        MagicPanel.SetActive(false);
+        EnemySelectPanel.SetActive(true);
+    }
+
+    public void Input4()
+    {
         AttackPanel.SetActive(false);
-        PlayerInput = PlayerGUI.DONE;
-        
+        MagicPanel.SetActive(true);
     }
 
     void PlayerInputDone()
