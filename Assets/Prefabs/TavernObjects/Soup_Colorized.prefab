@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 869ff1e45e3fea74c8cdeea4c40c01d5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 869ff1e45e3fea74c8cdeea4c40c01d5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 869ff1e45e3fea74c8cdeea4c40c01d5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 869ff1e45e3fea74c8cdeea4c40c01d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.07
       objectReference: {fileID: 0}
@@ -66,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c1bb085eae61fe742813d1e2e09384e3, type: 2}
     - target: {fileID: 919132149155446097, guid: 869ff1e45e3fea74c8cdeea4c40c01d5, type: 3}
       propertyPath: m_Name
-      value: soup
+      value: Soup_Colorized
       objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: 869ff1e45e3fea74c8cdeea4c40c01d5, type: 3}
       propertyPath: m_Materials.Array.data[0]
