@@ -163,7 +163,7 @@ public class BattleStateMachine : MonoBehaviour
         AttackButton.GetComponent<Button>().onClick.AddListener(() => Input1());
         atkBtns.Add(AttackButton);
 
-        GameObject MagicAttackButton = Instantiate(actionButton) as GameObject;
+        GameObject MagicAttackButton = Instantiate(magicButton) as GameObject;
         TMP_Text MagicAttackButtonText = MagicAttackButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
         MagicAttackButtonText.text = "Magic";
         MagicAttackButton.GetComponent<Button>().onClick.AddListener(() => Input4());
