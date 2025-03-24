@@ -163,7 +163,6 @@ public class BattleStateMachine : MonoBehaviour
             TMP_Text MagicButtonText = MagicButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
             MagicButtonText.text = magic.name;
             AttackButton ATB = MagicButton.GetComponent<AttackButton>();
-            ATB.magicAttackToPerform = magic;
 
         }
     }

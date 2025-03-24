@@ -2000,7 +2000,7 @@ MonoBehaviour:
   PlayerInput: 0
   PlayerToManage: []
   enemyButton: {fileID: 8765874976119269257, guid: 9d6e3e7e7626bff4abdab657071417e7, type: 3}
-  magicButton: {fileID: 1359365630}
+  magicButton: {fileID: 8749512604154844492, guid: c95dc6c7ef8948b429ae232796b540bc, type: 3}
   Spacer: {fileID: 1304753375}
   MagicSpacer: {fileID: 242849747}
   AttackPanel: {fileID: 1335189138}
