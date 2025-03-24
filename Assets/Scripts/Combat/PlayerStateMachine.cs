@@ -176,11 +176,6 @@ public class PlayerStateMachine : MonoBehaviour
         Debug.Log("Player attacks and deals " + calcDamage + " damage!");
     }
 
-    void CreatePlayerPanel()
-    {
-        PlayerPanel = Instantiate(PlayerPanel) as GameObject;
-        
-        //PlayerPanel.transform.SetParent(PlayerPanelSpacer,false);
-    }
+   
 
 }

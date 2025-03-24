@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class BattleStateMachine : MonoBehaviour
 {
@@ -33,9 +34,9 @@ public class BattleStateMachine : MonoBehaviour
     private HandleTurn PlayerChoice;
 
     public GameObject enemyButton;
-    public GameObject actionButton;
     public GameObject magicButton;
     public Transform Spacer;
+    public Transform MagicSpacer;
     private List<GameObject> atkBtns = new List<GameObject>();
 
     public GameObject AttackPanel;
@@ -56,7 +57,8 @@ public class BattleStateMachine : MonoBehaviour
         EnemySelectPanel.SetActive(false);
         MagicPanel.SetActive(false);
         EnemyButtons();
-        CreateAttackButtons();
+        
+        CreateMagicButtons();
     }
 
     // Update is called once per frame
@@ -152,33 +154,18 @@ public class BattleStateMachine : MonoBehaviour
             button.EnemyPrefab = enemy;
         }
     }
-
-
-
-    void CreateAttackButtons()
+    void CreateMagicButtons()
     {
-        GameObject AttackButton = Instantiate(actionButton) as GameObject;
-        TMP_Text AttackButtonText = AttackButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
-        AttackButtonText.text = "Attack";
-        AttackButton.GetComponent<Button>().onClick.AddListener(() => Input1());
-        atkBtns.Add(AttackButton);
-
-        GameObject MagicAttackButton = Instantiate(magicButton) as GameObject;
-        TMP_Text MagicAttackButtonText = MagicAttackButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
-        MagicAttackButtonText.text = "Magic";
-        MagicAttackButton.GetComponent<Button>().onClick.AddListener(() => Input4());
-        atkBtns.Add(MagicAttackButton);
-        foreach (BaseAttack magicAtk in PlayerToManage[0].GetComponent<PlayerStateMachine>().player.magic)
+        foreach (BaseAttack magic in PlayerInGame[0].GetComponent<PlayerStateMachine>().player.magic)
         {
             GameObject MagicButton = Instantiate(magicButton) as GameObject;
+            MagicButton.transform.SetParent(MagicSpacer);
             TMP_Text MagicButtonText = MagicButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
-            MagicButtonText.text = magicAtk.name;
+            MagicButtonText.text = magic.name;
             AttackButton ATB = MagicButton.GetComponent<AttackButton>();
-            ATB.magicAttackToPerform = magicAtk;
-            atkBtns.Add(MagicButton);
+            ATB.magicAttackToPerform = magic;
 
         }
-
     }
 
     public void Input1()//attack button
