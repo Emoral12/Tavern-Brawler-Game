@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 boxSize;
     [SerializeField] private float maxDistance;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private float jumpForce = 3;
 
     private bool combatState = false;
     private bool dialogueState = false;
@@ -59,12 +58,6 @@ public class PlayerController : MonoBehaviour
         // Player movement and camera control
         PlayerMovement();
         LookAround();
-
-        // Jump logic
-        if (GroundCheck() && Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        }
     }
 
     void UpdateCursorState()
