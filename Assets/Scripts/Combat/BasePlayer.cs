@@ -13,6 +13,8 @@ public class BasePlayer
     public float baseMP;
     public float curMP;
 
+    
+
     public List<BaseAttack> attacks = new List<BaseAttack>();
     public List<BaseAttack> magic = new List<BaseAttack>();
 }

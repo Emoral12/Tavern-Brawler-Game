@@ -172,7 +172,7 @@ public class BattleStateMachine : MonoBehaviour
         PlayerChoice.Attacker = PlayerToManage[0].name;
         PlayerChoice.AttackersGameObject = PlayerToManage[0];
         PlayerChoice.Type = "Player";
-
+        PlayerChoice.chosenAttack = PlayerToManage[0].GetComponent<PlayerStateMachine>().player.attacks[0];
         AttackPanel.SetActive(false);
         EnemySelectPanel.SetActive(true);
     }
@@ -188,8 +188,8 @@ public class BattleStateMachine : MonoBehaviour
         PlayerChoice.Attacker = PlayerToManage[0].name;
         PlayerChoice.AttackersGameObject = PlayerToManage[0];
         PlayerChoice.Type = "Player";
-
         PlayerChoice.chosenAttack = chosenMagic;
+        PlayerChoice.chosenAttack = PlayerToManage[0].GetComponent<PlayerStateMachine>().player.magic[0];
         MagicPanel.SetActive(false);
         EnemySelectPanel.SetActive(true);
     }

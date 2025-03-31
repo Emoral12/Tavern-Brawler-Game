@@ -131,6 +131,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (isDefending == false)
         {
             DoDamage();
+            TakeMana();
         }
         
 
@@ -158,10 +159,6 @@ public class PlayerStateMachine : MonoBehaviour
     }
     public void TakeDamage(float getDamageAmount)
     {
-        if (isDefending)
-        {
-            getDamageAmount = getDamageAmount / 2;
-        }
         player.curHP -= getDamageAmount;
         stats.PlayerHP.text = "HP: " + player.curHP + "/" + player.baseHP;
         if (player.curHP <= 0f)
@@ -171,9 +168,15 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void DoDamage()
     {
-        float calcDamage = 15;
+        float calcDamage = bsm.performList[0].chosenAttack.attackDamage;
         EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calcDamage);
         Debug.Log("Player attacks and deals " + calcDamage + " damage!");
+    }
+    void TakeMana()
+    {
+        float takeMana = bsm.performList[0].chosenAttack.attackCost;
+        player.curMP -= takeMana;
+        stats.PlayerMP.text = "MP: " + player.curMP + "/" + player.baseMP;
     }
 
    

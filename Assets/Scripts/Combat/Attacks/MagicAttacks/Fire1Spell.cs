@@ -8,6 +8,6 @@ public class Fire1Spell : BaseAttack
     {
         attackName = "Fire 1";
         attackDamage = 20f;
-        attackCost = 10f;
+        attackCost = 5f;
     }
 }

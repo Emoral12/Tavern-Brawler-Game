@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Fire 1
   attackDamage: 20
-  attackCost: 10
+  attackCost: 5
