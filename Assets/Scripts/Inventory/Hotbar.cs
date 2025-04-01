@@ -141,14 +141,25 @@ public class Hotbar : MonoBehaviour
     {
         if (slots == null) return;
 
-        for (int i = 0; i < slotCount; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i] != null)
             {
+                
                 Image backgroundImage = slots[i].GetComponent<Image>();
+                if (backgroundImage == null)
+                {
+                    
+                    backgroundImage = slots[i].transform.GetComponent<Image>();
+                }
+
                 if (backgroundImage != null)
                 {
                     backgroundImage.color = (i == selectedSlot) ? selectedSlotColor : unselectedSlotColor;
+                }
+                else
+                {
+                    Debug.LogError($"No Image component found on slot {i}");
                 }
             }
         }
@@ -187,4 +198,24 @@ public class Hotbar : MonoBehaviour
         }
         return null;
     }
+
+    public Item GetSelectedItem()
+    {
+        if (selectedSlot >= 0 && selectedSlot < slots.Length)
+        {
+            return items[selectedSlot];
+        }
+        return null;
+    }
+
+    public void RemoveSelectedItem()
+    {
+        if (selectedSlot >= 0 && selectedSlot < slots.Length)
+        {
+            items[selectedSlot] = null;
+            slots[selectedSlot].SetItem(null);
+            UpdateUI();
+        }
+    }
 }
+

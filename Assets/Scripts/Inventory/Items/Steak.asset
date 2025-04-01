@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5236e8137c91541aff84c680b95824, type: 3}
   m_Name: Steak
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Tender Steak
   icon: {fileID: 21300000, guid: 0fe01be0dc0f586408b2cbba051dc6fc, type: 3}
   prefab: {fileID: 919132149155446097, guid: 7b65e3a1e0c70fd4d99f5db0478392ab, type: 3}
   isUsable: 1
-  healthRestoreAmount: 40
