@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/edit.unity
     guid: 8f5d1257c23d8a14cbfc2e82cb6fdd94
   - enabled: 1
-    path: Assets/Scenes/Battle.unity
+    path: Assets/Scenes/LowHpLowDmg.unity
     guid: a042063300b6f8d43a7d84b2fe850da1
   m_configObjects: {}
