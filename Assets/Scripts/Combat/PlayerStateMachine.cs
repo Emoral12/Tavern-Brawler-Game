@@ -173,13 +173,13 @@ public class PlayerStateMachine : MonoBehaviour
         {
             float calcDamage = (bsm.performList[0].chosenAttack.attackDamage) * 2;
             EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calcDamage);
-            Debug.Log("Player attacks and deals " + calcDamage + " damage! A critical hit!");
+            Debug.Log("The Tavernkeep attacks and deals " + calcDamage + " damage! A critical hit!");
         }
         else
         {
             float calcDamage = bsm.performList[0].chosenAttack.attackDamage;
             EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calcDamage);
-            Debug.Log("Player attacks and deals " + calcDamage + " damage!");
+            Debug.Log("The Tavernkeep attacks and deals " + calcDamage + " damage!");
         }
         
     }
