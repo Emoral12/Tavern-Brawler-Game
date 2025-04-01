@@ -148,11 +148,23 @@ public class EnemyStateMachine : MonoBehaviour
 
     void DoDamage()
     {
+        
         HandleTurn myAttack = new HandleTurn();
         myAttack.Attacker = enemy.name;
-        float calcDamage = enemy.curATK + bsm.performList[0].chosenAttack.attackDamage;
-        PlayerToAttack.GetComponent<PlayerStateMachine>().TakeDamage(calcDamage);
-        Debug.Log(enemy.name + " deals " + calcDamage + " damage!");
+        int criticalHit = Random.Range(1, 11);
+        if (criticalHit == 10)
+        {
+            float calcDamage = (enemy.curATK + bsm.performList[0].chosenAttack.attackDamage) * 2;
+            PlayerToAttack.GetComponent<PlayerStateMachine>().TakeDamage(calcDamage);
+            Debug.Log(enemy.name + " deals " + calcDamage + " damage! A critical hit!");
+        }
+        else
+        {
+            float calcDamage = enemy.curATK + bsm.performList[0].chosenAttack.attackDamage;
+            PlayerToAttack.GetComponent<PlayerStateMachine>().TakeDamage(calcDamage);
+            Debug.Log(enemy.name + " deals " + calcDamage + " damage!");
+        }
+        
     }
     public void TakeDamage(float getDamageAmount)
     {

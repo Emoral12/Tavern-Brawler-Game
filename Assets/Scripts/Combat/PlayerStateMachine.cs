@@ -168,9 +168,20 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void DoDamage()
     {
-        float calcDamage = bsm.performList[0].chosenAttack.attackDamage;
-        EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calcDamage);
-        Debug.Log("Player attacks and deals " + calcDamage + " damage!");
+        int criticalHit = Random.Range(1, 11);
+        if (criticalHit == 10)
+        {
+            float calcDamage = (bsm.performList[0].chosenAttack.attackDamage) * 2;
+            EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calcDamage);
+            Debug.Log("Player attacks and deals " + calcDamage + " damage! A critical hit!");
+        }
+        else
+        {
+            float calcDamage = bsm.performList[0].chosenAttack.attackDamage;
+            EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calcDamage);
+            Debug.Log("Player attacks and deals " + calcDamage + " damage!");
+        }
+        
     }
     void TakeMana()
     {
