@@ -9,9 +9,11 @@ public class TimingCookingGame : MonoBehaviour
 {
     [Header("Game Settings")]
     [SerializeField] private int totalSteps = 5;
-    [SerializeField] private float minTimingWindow = 0.2f;
-    [SerializeField] private float maxTimingWindow = 0.8f;
-    [SerializeField] private float indicatorSpeed = 2f;
+    // make timing windows smaller to increase difficulty
+    [SerializeField] private float minTimingWindow = 0.1f;  // Changed from 0.2
+    [SerializeField] private float maxTimingWindow = 0.3f;  // Changed from 0.8
+    // increase speed to make it harder
+    [SerializeField] private float indicatorSpeed = 2f;     // Changed from 2
     [SerializeField] private KeyCode actionKey = KeyCode.Space;
     
     private int currentStep = 0;
@@ -20,7 +22,7 @@ public class TimingCookingGame : MonoBehaviour
     private GameObject uiRoot;
     private Coroutine gameLoopCoroutine;
     private Coroutine indicatorCoroutine;
-    
+    private PlayerController playerController;
     
     private TextMeshProUGUI instructionText;
     private TextMeshProUGUI stepText;
@@ -38,9 +40,20 @@ public class TimingCookingGame : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
+    private void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+    
     public void StartGame(Action<bool> onComplete)
     {
         if (isActive) return;
+        
+        // disable player controller
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+        }
         
         onCompleteCallback = onComplete;
         isActive = true;
@@ -275,12 +288,12 @@ public class TimingCookingGame : MonoBehaviour
                 this.stepText.text = stepText;
             }
             
-            
-            float windowStart = UnityEngine.Random.Range(0.1f, 0.6f);
+            // Adjust the random window position to ensure it stays within bounds
             float windowSize = UnityEngine.Random.Range(minTimingWindow, maxTimingWindow);
+            // Ensure the window stays within the bar by limiting the start position
+            float windowStart = UnityEngine.Random.Range(0.1f, 0.9f - windowSize);
             
             SetTimingWindow(windowStart, windowStart + windowSize);
-            
             
             if (indicatorRect != null)
             {
@@ -288,16 +301,17 @@ public class TimingCookingGame : MonoBehaviour
                 indicatorRect.anchorMax = new Vector2(0, 1);
             }
             
-            
             indicatorCoroutine = StartCoroutine(MoveIndicator(indicatorSpeed));
             
             bool stepCompleted = false;
             bool stepFailed = false;
             bool canPress = true;
             
-            
+            // reduce the time allowed to complete each step
             float timer = 0;
-            while (timer < 3f && !stepCompleted && !stepFailed)
+            float maxTime = 2f; // changed from 3f to make it more challenging
+            
+            while (timer < maxTime && !stepCompleted && !stepFailed)
             {
                 timer += Time.unscaledDeltaTime;
                 
@@ -391,7 +405,7 @@ public class TimingCookingGame : MonoBehaviour
     private IEnumerator MoveIndicator(float speed)
     {
         float elapsed = 0f;
-        float duration = 3f;
+        float duration = 2f;
         
         while (elapsed < duration)
         {
@@ -476,6 +490,18 @@ public class TimingCookingGame : MonoBehaviour
         isActive = false;
         gameLoopCoroutine = null;
         indicatorCoroutine = null;
+        
+        // re-enable player controller
+        if (playerController != null)
+        {
+            playerController.enabled = true;
+        }
+        
+        // reset player velocity
+        if (playerController != null && playerController.GetComponent<Rigidbody>() != null)
+        {
+            playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
     }
     
     private void OnDestroy()

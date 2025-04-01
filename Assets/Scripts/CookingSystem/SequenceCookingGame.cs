@@ -17,7 +17,7 @@ public class SequenceCookingGame : MonoBehaviour
     private bool isActive = false;
     private Action<bool> onCompleteCallback;
     private GameObject uiRoot;
-    
+    private PlayerController playerController;
     
     private TextMeshProUGUI instructionText;
     private TextMeshProUGUI sequenceText;
@@ -33,9 +33,20 @@ public class SequenceCookingGame : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
+    private void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+    
     public void StartGame(Action<bool> onComplete)
     {
         if (isActive) return;
+        
+        // Disable player controller
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+        }
         
         onCompleteCallback = onComplete;
         isActive = true;
@@ -245,7 +256,7 @@ public class SequenceCookingGame : MonoBehaviour
     
     private void UpdateSequenceDisplay()
     {
-        
+        // Use the text display
         string sequenceString = "";
         for (int i = 0; i < currentSequence.Count; i++)
         {
@@ -265,16 +276,15 @@ public class SequenceCookingGame : MonoBehaviour
         
         sequenceText.text = sequenceString;
         
-        
+        // 
+        /*
         for (int i = 0; i < keyImages.Count; i++)
         {
             if (i < currentSequence.Count)
             {
-                
                 Transform keyTextTransform = keyImages[i].transform.GetChild(0);
                 TextMeshProUGUI keyText = keyTextTransform.GetComponent<TextMeshProUGUI>();
                 keyText.text = currentSequence[i].ToString();
-                
                 
                 if (i < currentStep)
                 {
@@ -290,7 +300,7 @@ public class SequenceCookingGame : MonoBehaviour
                 }
             }
         }
-        
+        */
         
         progressBar.value = (float)currentStep / sequenceLength;
     }
@@ -386,6 +396,18 @@ public class SequenceCookingGame : MonoBehaviour
         
         
         isActive = false;
+        
+        
+        if (playerController != null)
+        {
+            playerController.enabled = true;
+        }
+        
+        
+        if (playerController != null && playerController.GetComponent<Rigidbody>() != null)
+        {
+            playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
     }
     
     private void OnDestroy()
