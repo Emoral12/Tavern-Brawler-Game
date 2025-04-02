@@ -8,9 +8,9 @@ using System.Collections.Generic;
 public class MemoryMatchGame : MonoBehaviour
 {
     [Header("Game Settings")]
-    [SerializeField] private float showDurationSeconds = 3f;
+    [SerializeField] private float showDurationSeconds = 1f;
     [SerializeField] private float fadeSpeed = 2f;
-    [SerializeField] private int sequenceLength = 4;
+    [SerializeField] private int sequenceLength = 5;
     
     private bool isActive = false;
     private Action<bool> onCompleteCallback;

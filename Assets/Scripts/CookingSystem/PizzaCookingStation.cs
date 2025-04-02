@@ -5,11 +5,10 @@ using UnityEngine.UI;
 public class PizzaCookingStation : MonoBehaviour
 {
     [SerializeField] private Item rewardItem;
-    [SerializeField] private float interactionRange = 3f;
     private bool playerInRange = false;
     private MemoryMatchGame cookingGame;
+    public Item RewardItem => rewardItem;
     
-     
     private static Canvas uiCanvas;
     private TextMeshProUGUI interactText;
     
@@ -29,14 +28,11 @@ public class PizzaCookingStation : MonoBehaviour
     {
         if (uiCanvas == null)
         {
-            GameObject canvasObj = new GameObject("StationCanvas");
+            GameObject canvasObj = new GameObject("UICanvas");
             uiCanvas = canvasObj.AddComponent<Canvas>();
-            uiCanvas.renderMode = RenderMode.WorldSpace;
-            uiCanvas.worldCamera = Camera.main;
-            
-            CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
+            uiCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvasObj.AddComponent<CanvasScaler>();
             canvasObj.AddComponent<GraphicRaycaster>();
-            
             DontDestroyOnLoad(canvasObj);
         }
         
@@ -49,31 +45,12 @@ public class PizzaCookingStation : MonoBehaviour
         interactText.alignment = TextAlignmentOptions.Center;
         interactText.color = Color.white;
         
-         
-        GameObject bgObj = new GameObject("TextBackground");
-        bgObj.transform.SetParent(textObj.transform, false);
-        bgObj.transform.SetAsFirstSibling();
-        
-        Image bg = bgObj.AddComponent<Image>();
-        bg.color = new Color(0, 0, 0, 0.5f);
-        
-        RectTransform bgRect = bg.GetComponent<RectTransform>();
-        bgRect.anchorMin = Vector2.zero;
-        bgRect.anchorMax = Vector2.one;
-        bgRect.sizeDelta = new Vector2(20, 10);
-        
         RectTransform rectTransform = interactText.GetComponent<RectTransform>();
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
         rectTransform.sizeDelta = new Vector2(300, 50);
-        
-         
-        uiCanvas.transform.position = transform.position + Vector3.up * 2f;
-        uiCanvas.transform.localScale = Vector3.one * 0.01f;
-        
-         
-        uiCanvas.gameObject.AddComponent<Billboard>();
+        rectTransform.anchoredPosition = new Vector2(0, -50);
         
         interactText.gameObject.SetActive(false);
     }
@@ -139,3 +116,4 @@ public class PizzaCookingStation : MonoBehaviour
         }
     }
 }
+

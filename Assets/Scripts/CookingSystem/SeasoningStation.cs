@@ -1,16 +1,16 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SeasoningStation : MonoBehaviour
 {
     [SerializeField] private Item rewardItem;
-    [SerializeField] private float interactionRange = 3f;
     private bool playerInRange = false;
     private SeasoningGame seasoningGame;
+    public Item RewardItem => rewardItem;
     
-    [Header("UI")]
-    [SerializeField] private TextMeshProUGUI interactPrompt;
-    [SerializeField] private GameObject promptCanvas;
+    private static Canvas uiCanvas;
+    private TextMeshProUGUI interactText;
     
     private void Start()
     {
@@ -21,9 +21,45 @@ public class SeasoningStation : MonoBehaviour
             seasoningGame = gameObj.AddComponent<SeasoningGame>();
         }
         
-        if (promptCanvas != null)
+        SetupUIElements();
+    }
+    
+    private void SetupUIElements()
+    {
+        if (uiCanvas == null)
         {
-            promptCanvas.SetActive(false);
+            GameObject canvasObj = new GameObject("UICanvas");
+            uiCanvas = canvasObj.AddComponent<Canvas>();
+            uiCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvasObj.AddComponent<CanvasScaler>();
+            canvasObj.AddComponent<GraphicRaycaster>();
+            DontDestroyOnLoad(canvasObj);
+        }
+        
+        GameObject textObj = new GameObject("InteractText");
+        textObj.transform.SetParent(uiCanvas.transform, false);
+        
+        interactText = textObj.AddComponent<TextMeshProUGUI>();
+        interactText.text = "Press 'E' to season";
+        interactText.fontSize = 36;
+        interactText.alignment = TextAlignmentOptions.Center;
+        interactText.color = Color.white;
+        
+        RectTransform rectTransform = interactText.GetComponent<RectTransform>();
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        rectTransform.sizeDelta = new Vector2(300, 50);
+        rectTransform.anchoredPosition = new Vector2(0, -50);
+        
+        interactText.gameObject.SetActive(false);
+    }
+
+    private void ShowPrompt(bool show)
+    {
+        if (interactText != null)
+        {
+            interactText.gameObject.SetActive(show);
         }
     }
     
@@ -77,14 +113,6 @@ public class SeasoningStation : MonoBehaviour
                 bool added = inventorySystem.AddItem(rewardItem);
                 Debug.Log(added ? $"Added {rewardItem.itemName} to inventory!" : "Inventory is full!");
             }
-        }
-    }
-    
-    private void ShowPrompt(bool show)
-    {
-        if (promptCanvas != null)
-        {
-            promptCanvas.SetActive(show);
         }
     }
 }

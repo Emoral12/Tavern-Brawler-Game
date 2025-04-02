@@ -7,6 +7,7 @@ public class CookingStation : MonoBehaviour
     [SerializeField] private Item rewardItem;
     private bool playerInRange = false;
     private SequenceCookingGame cookingGame;
+    public Item RewardItem => rewardItem;
     
     // UI elements
     private static Canvas uiCanvas;
