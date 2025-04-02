@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5236e8137c91541aff84c680b95824, type: 3}
   m_Name: Pizza
   m_EditorClassIdentifier: 
-  itemName: Tender Steak
+  itemName: Cheesy Pizza
   icon: {fileID: 21300000, guid: 49f916eca4b76a44e88fcf7b0d2ad092, type: 3}
   prefab: {fileID: 0}
   isUsable: 1
