@@ -8,6 +8,10 @@ TagManager:
   - DeadPlayer
   - DeadEnemy
   - Combat
+  - Brawler
+  - Mage
+  - Commoner
+  - Child
   layers:
   - Default
   - TransparentFX

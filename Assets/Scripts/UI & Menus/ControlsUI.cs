@@ -31,6 +31,7 @@ public class ControlsUI : MonoBehaviour
         controlsText.text = "Controls:\n" +
                           "[I] Inventory\n" +
                           "[E] Interact\n" +
+                          "[C] Combat\n" +
                           "[F] Serve";
         controlsText.fontSize = 24;
         controlsText.color = Color.white;

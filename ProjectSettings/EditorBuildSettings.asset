@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d88fe45e75a1420469b58cc5c1efe667
   - enabled: 1
-    path: Assets/Scenes/edit.unity
+    path: Assets/Scenes/Tavern.unity
     guid: 8f5d1257c23d8a14cbfc2e82cb6fdd94
+  - enabled: 1
+    path: Assets/Scenes/HighHpHighDMG.unity
+    guid: 5910ef5dff6aab541a3846d939f9dd76
+  - enabled: 1
+    path: Assets/Scenes/HighHPMidDmg.unity
+    guid: f395fca1595693c48b023dcc21b48052
+  - enabled: 1
+    path: Assets/Scenes/LowHPHighDmg.unity
+    guid: 5fc0d3bee3bc74f41b69921e7a4504ee
   - enabled: 1
     path: Assets/Scenes/LowHpLowDmg.unity
     guid: a042063300b6f8d43a7d84b2fe850da1

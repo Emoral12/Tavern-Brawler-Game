@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24c6151dfaa31149a3291b7c89d7cc4, type: 3}
+  m_Name: Calm
+  m_EditorClassIdentifier: 
+  dialogue:
+  - CALM DOWN?! I WON'T CALM DOWN UNTIL I'VE BEEN SERVED MY MEAL LIKE THE GLORIOUS
+    WARRIOR I AM! NOW SCRAM BEFORE I CURSH YOUR BONES!
+  responses:
+  - responseText: Chill out
+    dialogueObject: {fileID: 11400000, guid: dd8a5dcc6c083ec4aa6425ed66be9244, type: 2}
+  - responseText: FIGHT ME!
+    dialogueObject: {fileID: 11400000, guid: 65d4fd4ef69af124b869853704d50ec0, type: 2}
