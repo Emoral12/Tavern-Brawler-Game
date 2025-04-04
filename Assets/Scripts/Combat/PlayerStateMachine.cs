@@ -85,7 +85,7 @@ public class PlayerStateMachine : MonoBehaviour
                             bsm.performList.RemoveAt(i);
                         }
                     }
-                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    
 
                     alive = false;
                 }

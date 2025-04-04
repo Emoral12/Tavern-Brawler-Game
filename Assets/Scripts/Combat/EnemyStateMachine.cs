@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyStateMachine : MonoBehaviour
 {
@@ -75,7 +76,7 @@ public class EnemyStateMachine : MonoBehaviour
                             bsm.performList.RemoveAt(i);
                         }
                     }
-                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    SceneManager.LoadScene("Tavern");
 
                     alive = false;
                 }
