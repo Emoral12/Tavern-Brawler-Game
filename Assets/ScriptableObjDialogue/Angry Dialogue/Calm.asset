@@ -16,7 +16,7 @@ MonoBehaviour:
   - CALM DOWN?! I WON'T CALM DOWN UNTIL I'VE BEEN SERVED MY MEAL LIKE THE GLORIOUS
     WARRIOR I AM! NOW SCRAM BEFORE I CURSH YOUR BONES!
   responses:
-  - responseText: Chill out
+  - responseText: Please, chill out
     dialogueObject: {fileID: 11400000, guid: dd8a5dcc6c083ec4aa6425ed66be9244, type: 2}
-  - responseText: FIGHT ME!
+  - responseText: Yea, right.
     dialogueObject: {fileID: 11400000, guid: 65d4fd4ef69af124b869853704d50ec0, type: 2}

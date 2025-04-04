@@ -17,5 +17,5 @@ MonoBehaviour:
   responses:
   - responseText: Gotcha
     dialogueObject: {fileID: 11400000, guid: 0757304de3c645643b76dc615fc1a7f6, type: 2}
-  - responseText: Wanna try something else?
+  - responseText: Nothing else?
     dialogueObject: {fileID: 11400000, guid: f29c243a98d1d4849825a841911df7f8, type: 2}

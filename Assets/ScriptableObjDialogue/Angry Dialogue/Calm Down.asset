@@ -16,5 +16,5 @@ MonoBehaviour:
   - YOU WILL NOT CALM DOWN THE ONE AND ONLY BJORK THE FELL-HANDED! ONLY IN COMBAT
     CAN YOU "CALM" DOWN THE MIT HAMMER OF THE NORTHERN LANDS!!
   responses:
-  - responseText: FIGHT ME!
+  - responseText: BACK OFF!
     dialogueObject: {fileID: 11400000, guid: 65d4fd4ef69af124b869853704d50ec0, type: 2}

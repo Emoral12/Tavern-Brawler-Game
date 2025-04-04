@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Fight Complete
   m_EditorClassIdentifier: 
   dialogue:
-  - SUCH GLORIOUS BATTLE! YOU'VE PROVEN YOURSELF A WORTHY COMBATANT, LITTLE ONE,
-    YOU HAVE MY RESPECTS!!
+  - RAARGGHHHH! GIVE ME GLORIOUS BATTLE!!!
   responses: []

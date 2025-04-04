@@ -18,5 +18,5 @@ MonoBehaviour:
   responses:
   - responseText: AHHHHHHHH!
     dialogueObject: {fileID: 11400000, guid: 40c51b0890d5e9e40a7ec834c9203695, type: 2}
-  - responseText: FIGHT ME!
+  - responseText: '*Cry*'
     dialogueObject: {fileID: 11400000, guid: 65d4fd4ef69af124b869853704d50ec0, type: 2}

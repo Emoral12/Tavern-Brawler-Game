@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogue:
   - HUH?! WHAT DO YOU WANT, WORM?!!!
   responses:
-  - responseText: Calm down
+  - responseText: Calm Down
     dialogueObject: {fileID: 11400000, guid: 7be48d15b2cc8384a8a6048afaa93543, type: 2}
-  - responseText: why...?
+  - responseText: '*Scream in terror*'
     dialogueObject: {fileID: 11400000, guid: 5a38174d41613e44d8b872554340c132, type: 2}
