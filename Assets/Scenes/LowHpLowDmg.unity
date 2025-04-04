@@ -1841,7 +1841,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8335276137391361641, guid: 90ee5ac505576c1428662a17bc799608, type: 3}
       propertyPath: m_Name
-      value: commoner_prefab
+      value: Weak Commoner
       objectReference: {fileID: 0}
     - target: {fileID: 8335276137391361641, guid: 90ee5ac505576c1428662a17bc799608, type: 3}
       propertyPath: m_TagString
@@ -3341,7 +3341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-    name: Commoner
+    name: Weak Commoner
     EnemyType: 0
     baseHP: 70
     curHP: 70

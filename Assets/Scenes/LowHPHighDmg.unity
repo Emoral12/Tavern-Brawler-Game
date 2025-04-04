@@ -4681,7 +4681,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1723998924682748281, guid: 3e5f4a520f8f0b44983c817e694f0cc3, type: 3}
       propertyPath: m_Name
-      value: wizard_prefab
+      value: Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723998924682748281, guid: 3e5f4a520f8f0b44983c817e694f0cc3, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2064635789646412739, guid: 3e5f4a520f8f0b44983c817e694f0cc3, type: 3}
       propertyPath: m_LocalScale.x

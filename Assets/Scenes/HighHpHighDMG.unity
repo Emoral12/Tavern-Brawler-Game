@@ -9116,7 +9116,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3865895863619759700, guid: b675fdd1be78f194d9280e9cebfaa149, type: 3}
       propertyPath: m_Name
-      value: brawny_guy_prefab
+      value: Barbarian
       objectReference: {fileID: 0}
     - target: {fileID: 3865895863619759700, guid: b675fdd1be78f194d9280e9cebfaa149, type: 3}
       propertyPath: m_TagString
