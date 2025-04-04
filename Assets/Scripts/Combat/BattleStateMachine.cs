@@ -48,6 +48,10 @@ public class BattleStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+        Debug.Log("cursor mode " + UnityEngine.Cursor.lockState + " visibility " + UnityEngine.Cursor.visible);
+
         action = PerformAction.WAIT;
         EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         PlayerInGame.AddRange(GameObject.FindGameObjectsWithTag("Player"));
