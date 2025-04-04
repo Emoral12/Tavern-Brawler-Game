@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24c6151dfaa31149a3291b7c89d7cc4, type: 3}
+  m_Name: RudeGreet
+  m_EditorClassIdentifier: 
+  dialogue:
+  - The hell you looking at with that ugly face of yours? Piss off, barboy; unless
+    you got any pretty barmaids to take my order and treat me.
+  responses:
+  - responseText: Rude.
+    dialogueObject: {fileID: 11400000, guid: cf603e908c9d66b47996d0f21279de08, type: 2}
+  - responseText: Get Out.
+    dialogueObject: {fileID: 11400000, guid: e10ccdc8ab65a7546b8e2f3d11752335, type: 2}

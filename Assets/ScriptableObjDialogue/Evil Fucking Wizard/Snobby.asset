@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24c6151dfaa31149a3291b7c89d7cc4, type: 3}
+  m_Name: Snobby
+  m_EditorClassIdentifier: 
+  dialogue:
+  - 'Hmmm, such a mediocre abode this one. '
+  responses:
+  - responseText: What?
+    dialogueObject: {fileID: 11400000, guid: 1b1e3160dd109c84ba85c7382b446e87, type: 2}
+  - responseText: EXCUSE ME?!
+    dialogueObject: {fileID: 11400000, guid: edaaad4821b8f8e4bb8e76afeca05905, type: 2}

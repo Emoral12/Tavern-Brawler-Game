@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24c6151dfaa31149a3291b7c89d7cc4, type: 3}
+  m_Name: Evil Mf
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Now, don't look at me so offended, it's evident someone of your ilk is not capable
+    of creating good architecture.
+  responses:
+  - responseText: You suck
+    dialogueObject: {fileID: 11400000, guid: f9841eff6816c5a449b58ea085941c71, type: 2}
+  - responseText: Shut up!
+    dialogueObject: {fileID: 11400000, guid: 5cb56d155e8d5634d90b98cc7ecb55f2, type: 2}
