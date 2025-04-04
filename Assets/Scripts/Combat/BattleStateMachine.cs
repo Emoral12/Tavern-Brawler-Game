@@ -50,7 +50,7 @@ public class BattleStateMachine : MonoBehaviour
     {
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
-        Debug.Log("cursor mode " + UnityEngine.Cursor.lockState + " visibility " + UnityEngine.Cursor.visible);
+       
 
         action = PerformAction.WAIT;
         EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
@@ -99,7 +99,7 @@ public class BattleStateMachine : MonoBehaviour
                     }
                 }
 
-                if (performList[0].Type == "Player")
+                else if (performList[0].Type == "Player")
                 {
                     PlayerStateMachine psm = performer.GetComponent<PlayerStateMachine>();
                     psm.isDefending = false;
